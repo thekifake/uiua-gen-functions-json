@@ -1590,9 +1590,9 @@ dependencies = [
 
 [[package]]
 name = "uiua"
-version = "0.0.17"
+version = "0.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07c1292c4bc9ad5d2fff9ebfe806de7a649de74a68a6f27d60ff0782c8821c47"
+checksum = "9c3f14f664dc26089791f5090f58fecf3319c2e55748f7ac63e082e101d45485"
 dependencies = [
  "ariadne",
  "bufreaderwriter",
@@ -1614,6 +1614,7 @@ dependencies = [
  "parking_lot",
  "paste",
  "rand",
+ "rayon",
  "rustls",
  "term_size",
  "tinyvec",
