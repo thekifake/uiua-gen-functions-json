@@ -1,5 +1,3 @@
-use std::collections::BTreeMap;
-
 use serde::*;
 use uiua::primitive::{Primitive, PrimClass};
 
@@ -36,32 +34,31 @@ fn get_prim_class(prim: Primitive) -> &'static str {
 }
 
 fn main() {
-    let mut map = BTreeMap::new();
+    let mut prims = Vec::new();
     for prim in Primitive::non_deprecated() {
         if let Some(names) = prim.names() {
             if names.glyph.is_none() { // Don't include system functions
                 continue;
             }
-            map.insert(
-                names.text,
-                PrimData {
-                    glyph: names.glyph,
-                    description: prim
-                        .doc()
-                        .map(|doc| doc.short_text())
-                        .unwrap_or_default()
-                        .into(),
-                    class: get_prim_class(prim)
-                },
-            );
+            prims.push(PrimData {
+                name: names.text.into(),
+                glyph: names.glyph,
+                description: prim
+                    .doc()
+                    .map(|doc| doc.short_text())
+                    .unwrap_or_default()
+                    .into(),
+                class: get_prim_class(prim)
+            });
         }
     }
-    let json = serde_json::to_string_pretty(&map).unwrap();
+    let json = serde_json::to_string_pretty(&prims).unwrap();
     std::fs::write("uiua_functions.json", json).unwrap();
 }
 
 #[derive(Serialize)]
 struct PrimData {
+    name: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     glyph: Option<char>,
     description: String,
