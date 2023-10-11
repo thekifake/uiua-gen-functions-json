@@ -42,13 +42,12 @@ fn main() {
             }
             prims.push(PrimData {
                 name: names.text.into(),
-                glyph: names.glyph,
                 description: prim
+                glyph: names.glyph,
                     .doc()
                     .map(|doc| doc.short_text())
                     .unwrap_or_default()
                     .into(),
-                class: get_prim_class(prim)
             });
         }
     }
