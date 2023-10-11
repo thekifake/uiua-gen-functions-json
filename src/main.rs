@@ -42,8 +42,8 @@ fn main() {
             }
             prims.push(PrimData {
                 name: names.text.into(),
-                description: prim,
-                glyph: names.glyph
+                glyph: names.glyph,
+                description: prim
                     .doc()
                     .map(|doc| doc.short_text())
                     .unwrap_or_default()
