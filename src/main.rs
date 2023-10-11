@@ -39,6 +39,9 @@ fn main() {
     let mut map = BTreeMap::new();
     for prim in Primitive::non_deprecated() {
         if let Some(names) = prim.names() {
+            if names.glyph.is_none() { // Don't include system functions
+                continue;
+            }
             map.insert(
                 names.text,
                 PrimData {
