@@ -37,7 +37,7 @@ fn main() {
     let mut prims = Vec::new();
     for prim in Primitive::non_deprecated() {
         if let Some(names) = prim.names() {
-            if names.glyph.is_none() { // Don't include system functions
+            if names.glyph.is_none() {
                 continue;
             }
             prims.push(PrimData {
